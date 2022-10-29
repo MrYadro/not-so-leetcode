@@ -1,5 +1,8 @@
 package leetcode
 
+// Runtime: 34 ms
+// Memory Usage: 3.9 MB
+
 func CanConstruct(ransomNote string, magazine string) bool {
 	m := make(map[rune]int)
 
