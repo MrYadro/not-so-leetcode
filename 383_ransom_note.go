@@ -1,32 +1,26 @@
 package leetcode
 
 // https://leetcode.com/problems/ransom-note/
-// Runtime: 16 ms
+// Runtime: 8 ms
 // Memory Usage: 3.9 MB
 
 func CanConstruct(ransomNote string, magazine string) bool {
-	lenMag := len(magazine)
-	lenRN := len(ransomNote)
-
-	if ransomNote == "" {
-		return true
-	}
-
-	if lenMag < lenRN {
+	if len(magazine) < len(ransomNote) {
 		return false
 	}
 
-	m := make(map[rune]int)
+	m := make([]int, 26)
 
-	for i := 0; i < lenMag; i++ {
-		m[rune(magazine[i])]++
+	for _, c := range magazine {
+		m[c-'a']++
 	}
 
-	for i := 0; i < lenRN; i++ {
-		if m[rune(ransomNote[i])] == 0 {
+	for _, c := range ransomNote {
+		adiff := c - 'a'
+		if m[adiff] == 0 {
 			return false
 		}
-		m[rune(ransomNote[i])]--
+		m[adiff]--
 	}
 
 	return true
